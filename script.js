@@ -28,7 +28,9 @@ function playRound(computerSelection, playerSelection) {
   if (computerSelection == playerSelection) {
     console.log("It's a tie!")
     result = 'draw';
-  } else if ((computerSelection == 'rock' && playerSelection == 'scissors') || (computerSelection == 'paper' && playerSelection =='rock') || (computerSelection == 'scissors' && playerSelection == 'paper')) {
+  } else if ((computerSelection == 'rock' && playerSelection == 'scissors') ||
+            (computerSelection == 'paper' && playerSelection =='rock') ||
+            (computerSelection == 'scissors' && playerSelection == 'paper')) {
     console.log(computerSelection + ' beats ' + playerSelection + '! Computer wins!');
     result =  'computer';
   } else {
