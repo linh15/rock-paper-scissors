@@ -2,10 +2,65 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/7c36b4e5e9.js" crossorigin="anonymous"></script>
     <title>Rock Paper Scissors</title>
   </head>
   <body>
+    <div class="title">
+      <h1>Rock Paper Scissors</h1>
+    </div>
+
+    <div class="computer">
+      <div class="comp-info">
+        <i class="fas fa-robot"> Computer</i>
+      </div>
+
+      <div class="comp-options">
+        <div class="comp-rock">
+          <i class="far fa-hand-rock"></i>
+          <div class="icon-name"> Rock </div>
+        </div>
+
+        <div class="comp-paper">
+          <i class="far fa-hand-paper"></i>
+          <div class="icon-name"> Paper </div>
+        </div>
+
+        <div class="comp-scissors">
+          <i class="far fa-hand-scissors"></i>
+          <div class="icon-name"> Scissors </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="playground">
+        <i class="comp-choice"> Computer</i> <br>
+        <i class="player-choice"> Player</i>
+    </div>
+
+    <div class="player">
+      <div class="player-options">
+        <div class="player-opt" id="player-rock">
+          <i class="far fa-hand-rock"></i>
+          <div class="icon-name"> Rock </div>
+        </div>
+        <div class="player-opt" id="player-paper">
+          <i class="far fa-hand-paper"></i>
+          <div class="icon-name"> Paper </div>
+        </div>
+        <div class="player-opt" id="player-scissors">
+          <i class="far fa-hand-scissors"></i>
+          <div class="icon-name"> Scissors </div>
+        </div>
+      </div>
+      <div class="player-info">
+        <i class="fas fa-user-circle"> Player</i>
+      </div>
+    </div>
+
+
 
   </body>
 </html>

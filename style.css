@@ -1,0 +1,13 @@
+div {
+  text-align: center;
+}
+
+
+.comp-options, .player-options {
+  display: flex;
+  justify-content: center;
+}
+
+.rock {
+
+}
