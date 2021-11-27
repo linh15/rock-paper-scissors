@@ -20,9 +20,9 @@ function playerPlay() {
 }
 
 // play 1 round, message the result of this round at the end
-function playRound(computerSelection, playerSelection) {
-  playerSelection = playerPlay();
-  computerSelection = computerPlay();
+function playRound() {
+  let playerSelection = playerPlay();
+  let computerSelection = computerPlay();
   console.log("Computer chooses " + computerSelection);
   let result;
   if (computerSelection == playerSelection) {
