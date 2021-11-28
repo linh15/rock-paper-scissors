@@ -1,6 +1,7 @@
-# Rock Paper Scissors game built in JavaScript (Odin project)
+# Rock Paper Scissors game (Odin project)
 
 A simple implementation of Rock Paper Scissors:
+- Game built in JavaScript 
 - Player plays with Computer
 - Rule for each round: Rock beats Scissors, Scissors beats Paper, Paper beats Rock
 - Winner of each round gets 1 point. If tie, no change in score
