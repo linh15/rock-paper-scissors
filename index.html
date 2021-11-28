@@ -2,10 +2,72 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/7c36b4e5e9.js" crossorigin="anonymous"></script>
     <title>Rock Paper Scissors</title>
   </head>
   <body>
+    <div class="title">
+      <h1>Rock Paper Scissors</h1>
+      <p class="rule">The first one gets 5 points wins the game.</p>
+      <hr>
+    </div>
+
+    <div class="computer">
+      <div class="comp-info">
+        <span class="fas fa-robot"> Computer: </span>
+        <span id="comp-score"></span>
+      </div>
+
+      <div class="comp-options">
+        <div class="comp-opt" id="comp-rock">
+          <i class="far fa-hand-rock"></i>
+          <div class="icon-name"> Rock </div>
+        </div>
+
+        <div class="comp-opt" id="comp-paper">
+          <i class="far fa-hand-paper"></i>
+          <div class="icon-name"> Paper </div>
+        </div>
+
+        <div class="comp-opt" id="comp-scissors">
+          <i class="far fa-hand-scissors"></i>
+          <div class="icon-name"> Scissors </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+        <i id="comp-stage"></i>
+        <div id="final-result"></div>
+        <i id="player-stage"></i>
+    </div>
+
+    <div class="player">
+      <div class="player-options">
+        <div class="player-opt" id="player-rock">
+          <i class="far fa-hand-rock"></i>
+          <div class="icon-name"> Rock </div>
+        </div>
+        <div class="player-opt" id="player-paper">
+          <i class="far fa-hand-paper"></i>
+          <div class="icon-name"> Paper </div>
+        </div>
+        <div class="player-opt" id="player-scissors">
+          <i class="far fa-hand-scissors"></i>
+          <div class="icon-name"> Scissors </div>
+        </div>
+      </div>
+      <div class="player-info">
+        <span class="fas fa-user-circle"> Player: </span>
+        <span id="player-score"></span>
+      </div>
+
+    </div>
+
+  <footer class="footer">Copyright &copy; Linh 2021</footer>
+
 
   </body>
 </html>

@@ -1,68 +1,112 @@
-// computer randomly chooses 1 of 3 options
+window.addEventListener("click", playRound);
+
+function playRound(event) {
+  console.log("before");
+
+  if (event.path[2].className !== "player-options") {
+    return;
+  };
+
+  console.log("after");
+
+  let playerChoice;
+  let playerStage = document.getElementById("player-stage");
+  playerStage.className = "";
+  playerStage.classList.add("fas");
+
+  if (event.path[1].id == "player-rock") {
+    playerChoice = "rock";
+    playerStage.classList.add("fa-hand-rock");
+  } else if (event.path[1].id == "player-paper") {
+    playerChoice = "paper";
+    playerStage.classList.add("fa-hand-paper");
+  } else if (event.path[1].id == "player-scissors") {
+    playerChoice = "scissors";
+    playerStage.classList.add("fa-hand-scissors");
+  }
+
+  let compChoice = computerPlay();
+
+  let result = getResult(playerChoice, compChoice);
+
+  displayScore(result);
+  //setTimeout(checkFinish, 1000);
+  checkFinish();
+
+}
+
 function computerPlay() {
     let randomChoice = Math.floor(Math.random() * 3);
-    let comp;
+    let compChoice;
+    let compStage = document.getElementById("comp-stage");
+    compStage.className = "";
+    compStage.classList.add("fas");
     if (randomChoice == 0) {
-      comp = 'rock';
+      compStage.classList.add("fa-hand-rock");
+      compChoice = "rock";
     } else if (randomChoice == 1) {
-      comp = 'paper';
+      compStage.classList.add("fa-hand-paper");
+      compChoice = "paper";
     } else {
-      comp = 'scissors';
+      compStage.classList.add("fa-hand-scissors");
+      compChoice = "scissors";
     }
-    return comp;
+    return compChoice;
 }
 
-// user chooses 1 of 3 options
-function playerPlay() {
-    let userInput = window.prompt('Which do you choose? Rock, Paper, Scissors?');
-    let plr = userInput.toLowerCase();
-    return plr;
-}
 
-// play 1 round, message the result of this round at the end
-function playRound() {
-  let playerSelection = playerPlay();
-  let computerSelection = computerPlay();
-  console.log("Computer chooses " + computerSelection);
+function getResult(playerChoice, compChoice) {
   let result;
-  if (computerSelection == playerSelection) {
+  if (compChoice == playerChoice) {
     console.log("It's a tie!")
     result = 'draw';
-  } else if ((computerSelection == 'rock' && playerSelection == 'scissors') ||
-            (computerSelection == 'paper' && playerSelection =='rock') ||
-            (computerSelection == 'scissors' && playerSelection == 'paper')) {
-    console.log(computerSelection + ' beats ' + playerSelection + '! Computer wins!');
-    result =  'computer';
+  } else if ((compChoice == 'rock' && playerChoice == 'scissors') ||
+            (compChoice == 'paper' && playerChoice =='rock') ||
+            (compChoice == 'scissors' && playerChoice == 'paper')) {
+    console.log('Computer wins!');
+    result =  "computer";
   } else {
-    console.log(playerSelection + ' beats ' + computerSelection + '! You win!');
-    result =  'player';
+    console.log('You win!');
+    result =  "player";
   }
   return result;
 }
 
-// play 5 rounds, keep counts of result in each round, get final result at the end
+function displayScore(result) {
 
-function game() {
-  let computer = 0;
-  let player = 0;
-  let draw = 0;
-  for (let i = 1; i <= 5; i++) {
-    let resultRound = playRound();
-    if (resultRound == 'draw') {
-      draw++;
-    } else if (resultRound == 'computer') {
-      computer++;
-    } else {
-      player++;
-    }
+  let playerScore = Number(document.getElementById("player-score").innerHTML);
+  let compScore = Number(document.getElementById("comp-score").innerHTML);
+  if (result == "computer") {
+    compScore += 1;
+  } else if (result == "player") {
+    playerScore += 1;
   }
-  if (draw > computer && draw > player) {
-    console.log("It's a tie!");
-  } else if (computer > player) {
-    console.log("Computer wins!");
-  } else {
-    console.log("You win!");
-  }
+  document.getElementById("player-score").innerHTML = playerScore;
+  document.getElementById("comp-score").innerHTML = compScore;
+
+  console.log(compScore);
+  console.log(playerScore);
+  // if (compScore == 5) {
+  //   // alert("Computer wins!");
+  //   // location.reload();
+  // } else if (playerScore == 5) {
+  //   // alert("You win!");
+  //   // location.reload();
+  // }
 }
 
-game();
+function checkFinish() {
+  let playerScore = Number(document.getElementById("player-score").innerHTML);
+  let compScore = Number(document.getElementById("comp-score").innerHTML);
+  if (compScore == 5) {
+    console.log("alert1");
+    document.getElementById("final-result").innerHTML = "COMPUTER WINS THE GAME!!!";
+    window.removeEventListener("click", playRound);
+    // location.reload();
+  } else if (playerScore == 5) {
+    console.log("alert2");
+    document.getElementById("final-result").innerHTML = "YOU WIN THE GAME!!!";
+    window.removeEventListener("click", playRound);
+    // location.reload();
+  }
+}
