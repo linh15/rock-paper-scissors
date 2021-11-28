@@ -54,6 +54,7 @@ function computerPlay() {
     return compChoice;
 }
 
+
 function getResult(playerChoice, compChoice) {
   let result;
   if (compChoice == playerChoice) {
