@@ -1,20 +1,45 @@
-// function playAGame() {
-//   computerPlay()
-//   playerPlay()
-//   displayComputer()
-//   displayPlayer()
-//   displayResult()
-//   displayScore()
-// }
-//
-//
+window.addEventListener("click", playRound);
 
+function playRound(event) {
+  console.log("before");
 
-// // computer randomly chooses 1 of 3 options
+  if (event.path[2].className !== "player-options") {
+    return;
+  };
+
+  console.log("after");
+
+  let playerChoice;
+  let playerStage = document.getElementById("player-stage");
+  playerStage.className = "";
+  playerStage.classList.add("fas");
+
+  if (event.path[1].id == "player-rock") {
+    playerChoice = "rock";
+    playerStage.classList.add("fa-hand-rock");
+  } else if (event.path[1].id == "player-paper") {
+    playerChoice = "paper";
+    playerStage.classList.add("fa-hand-paper");
+  } else if (event.path[1].id == "player-scissors") {
+    playerChoice = "scissors";
+    playerStage.classList.add("fa-hand-scissors");
+  }
+
+  let compChoice = computerPlay();
+
+  let result = getResult(playerChoice, compChoice);
+
+  displayScore(result);
+  //setTimeout(checkFinish, 1000);
+  checkFinish();
+
+}
+
 function computerPlay() {
     let randomChoice = Math.floor(Math.random() * 3);
     let compChoice;
     let compStage = document.getElementById("comp-stage");
+    compStage.className = "";
     compStage.classList.add("fas");
     if (randomChoice == 0) {
       compStage.classList.add("fa-hand-rock");
@@ -29,75 +54,58 @@ function computerPlay() {
     return compChoice;
 }
 
-// computerPlay();
-
-
-// user chooses 1 of 3 options
-function playerPlay() {
-    let playerStage = document.getElementById("player-stage");
-    playerStage.classList.add("fas");
-
-    document.getElementById("player-rock").addEventListener("click", () => {
-      playerStage.classList.add("fa-hand-rock");
-      computerPlay();
-      return "rock";
-    });
-
-    document.getElementById("player-paper").addEventListener("click", () => {
-      playerStage.classList.add("fa-hand-paper");
-      let playerChoice = "paper";
-      computerPlay();
-    });
-
-    document.getElementById("player-scissors").addEventListener("click", () => {
-      playerStage.classList.add("fa-hand-scissors");
-      let playerChoice = "scissors";
-      computerPlay();
-    });
-    //
-    // console.log(items);
-    // let choice;
-    //
-    // for (let i = 0; i < items.length; i++) {
-    //   items[i].addEventListener("click", function() {
-    //     let item = items[i];
-    //     if (item.id == "player-rock") {
-    //       choice = "rock";
-    //     } else if (item.id == "player-paper") {
-    //       choice = "paper";
-    //     } else if (item.id == "player-scissors") {
-    //       choice = "scissors";
-    //     }
-    //   });
-    // }
-
-}
-
-// playerPlay();
-
-
-
-
-
-
-
-// play 1 round, message the result of this round at the end
-function playRound(computerSelection, playerSelection) {
-  playerSelection = playerPlay();
-  computerSelection = computerPlay();
-
+function getResult(playerChoice, compChoice) {
   let result;
-  if (computerSelection == playerSelection) {
+  if (compChoice == playerChoice) {
     console.log("It's a tie!")
     result = 'draw';
-  } else if ((computerSelection == 'rock' && playerSelection == 'scissors') ||
-            (computerSelection == 'paper' && playerSelection =='rock') ||
-            (computerSelection == 'scissors' && playerSelection == 'paper')) {
-    console.log(computerSelection + ' beats ' + playerSelection + '! Computer wins!');
-    result =  'computer';
+  } else if ((compChoice == 'rock' && playerChoice == 'scissors') ||
+            (compChoice == 'paper' && playerChoice =='rock') ||
+            (compChoice == 'scissors' && playerChoice == 'paper')) {
+    console.log('Computer wins!');
+    result =  "computer";
   } else {
-    console.log(playerSelection + ' beats ' + computerSelection + '! You win!');
-    result =  'player';
+    console.log('You win!');
+    result =  "player";
   }
   return result;
+}
+
+function displayScore(result) {
+
+  let playerScore = Number(document.getElementById("player-score").innerHTML);
+  let compScore = Number(document.getElementById("comp-score").innerHTML);
+  if (result == "computer") {
+    compScore += 1;
+  } else if (result == "player") {
+    playerScore += 1;
+  }
+  document.getElementById("player-score").innerHTML = playerScore;
+  document.getElementById("comp-score").innerHTML = compScore;
+
+  console.log(compScore);
+  console.log(playerScore);
+  // if (compScore == 5) {
+  //   // alert("Computer wins!");
+  //   // location.reload();
+  // } else if (playerScore == 5) {
+  //   // alert("You win!");
+  //   // location.reload();
+  // }
+}
+
+function checkFinish() {
+  let playerScore = Number(document.getElementById("player-score").innerHTML);
+  let compScore = Number(document.getElementById("comp-score").innerHTML);
+  if (compScore == 5) {
+    console.log("alert1");
+    document.getElementById("final-result").innerHTML = "COMPUTER WINS THE GAME!!!";
+    window.removeEventListener("click", playRound);
+    // location.reload();
+  } else if (playerScore == 5) {
+    console.log("alert2");
+    document.getElementById("final-result").innerHTML = "YOU WIN THE GAME!!!";
+    window.removeEventListener("click", playRound);
+    // location.reload();
+  }
 }
